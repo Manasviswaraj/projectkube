@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pythonpipe-deployment
+  labels:
+    app: pythonpipe
+spec:
+  replicas: 3  # Number of pods to deploy
+  selector:
+    matchLabels:
+      app: pythonpipe
+  template:
+    metadata:
+      labels:
+        app: pythonpipe
+    spec:
+      containers:
+      - name: pythonpipe
+        image: manasvidocker/pythonpipe:latest  # Use the latest image pushed to Docker Hub
+        ports:
+        - containerPort: 80  # Replace with the appropriate port your application uses
+        env:
+        - name: NAME
+          value: "World"  # Set environment variable if needed
